@@ -20,3 +20,27 @@ def pregunta_10():
 
 
     """
+    # Lista para almacenar los resultados
+    resultados = []
+
+    # Abrir y leer el archivo CSV
+    with open("files/input/data.csv", "r") as file:
+        # Leer todas las líneas
+        lines = file.readlines()
+
+        # Procesar cada línea
+        for line in lines:
+            # Dividir la línea por tabulaciones
+            columns = line.strip().split("\t")
+            letra = columns[0]
+
+            # Contar elementos en la columna 4 (separados por coma)
+            elementos_col4 = len(columns[3].split(","))
+
+            # Contar elementos en la columna 5 (separados por coma)
+            elementos_col5 = len(columns[4].split(","))
+
+            # Agregar tupla al resultado
+            resultados.append((letra, elementos_col4, elementos_col5))
+
+    return resultados

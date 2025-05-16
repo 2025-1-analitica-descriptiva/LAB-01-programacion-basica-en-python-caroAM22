@@ -15,3 +15,31 @@ def pregunta_12():
     {'A': 177, 'B': 187, 'C': 114, 'D': 136, 'E': 324}
 
     """
+    # Diccionario para almacenar la suma por cada letra
+    suma_por_letra = {}
+
+    # Abrir y leer el archivo CSV
+    with open("files/input/data.csv", "r") as file:
+        # Leer todas las líneas
+        lines = file.readlines()
+
+        # Procesar cada línea
+        for line in lines:
+            # Dividir la línea por tabulaciones
+            columns = line.strip().split("\t")
+            letra = columns[0]
+            diccionario = columns[4]
+
+            # Sumar los valores de la columna 5
+            suma_valores = 0
+            for par in diccionario.split(","):
+                valor = int(par.split(":")[1])
+                suma_valores += valor
+
+            # Agregar la suma al total de la letra
+            suma_por_letra[letra] = suma_por_letra.get(letra, 0) + suma_valores
+
+    # Ordenar el diccionario por clave
+    resultado = dict(sorted(suma_por_letra.items()))
+
+    return resultado

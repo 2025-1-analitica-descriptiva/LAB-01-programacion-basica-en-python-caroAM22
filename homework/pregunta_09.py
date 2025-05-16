@@ -24,3 +24,25 @@ def pregunta_09():
      'jjj': 18}}
 
     """
+    # Diccionario para almacenar el conteo de cada clave
+    conteo_claves = {}
+
+    # Abrir y leer el archivo CSV
+    with open("files/input/data.csv", "r") as file:
+        # Leer todas las líneas
+        lines = file.readlines()
+
+        # Procesar cada línea
+        for line in lines:
+            # Dividir la línea por tabulaciones
+            columns = line.strip().split("\t")
+            # Obtener el diccionario de la columna 5
+            diccionario = columns[4]
+
+            # Procesar cada par clave-valor
+            for par in diccionario.split(","):
+                clave = par.split(":")[0]
+                # Incrementar el contador para esta clave
+                conteo_claves[clave] = conteo_claves.get(clave, 0) + 1
+
+    return conteo_claves

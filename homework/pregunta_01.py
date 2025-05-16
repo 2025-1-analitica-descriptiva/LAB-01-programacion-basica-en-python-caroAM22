@@ -14,3 +14,19 @@ def pregunta_01():
     214
 
     """
+    # Abrir y leer el archivo CSV
+    with open("files/input/data.csv", "r") as file:
+        # Leer todas las líneas
+        lines = file.readlines()
+
+        # Inicializar la suma
+        suma = 0
+
+        # Procesar cada línea
+        for line in lines:
+            # Dividir la línea por tabulaciones
+            columns = line.strip().split("\t")
+            # Sumar el valor de la segunda columna (índice 1)
+            suma += int(columns[1])
+
+        return suma
